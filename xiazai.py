@@ -4,6 +4,7 @@ url = 'http://image.bitautoimg.com/bt/car/default/images/logo/masterbrand/png/55
 web = urllib.request.urlopen(url)
 data = web.read()
 #f = open('f:/b.png',"wb")
+print(1222)
 c='sdf'
 b='f:/'+c+'.png'
 print(b)
