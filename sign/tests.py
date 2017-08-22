@@ -2,6 +2,7 @@ from django.test import TestCase
 from sign.models import Event,Guest
 from django.test import Client
 from django.contrib.auth.models import User
+
 from datetime import  datetime
 # Create your tests here.
 class ModelTest(TestCase):
@@ -45,6 +46,8 @@ class LoginActionTesst(TestCase):
     '''测试登录函数'''
     def setUp(self):
         User.objects.create_user('admin','admin@mail.com','rzh110120999')
+        #初始化调用User.objects.create_user()创建登录用户数据。
+        #  Client()类提供的 get()和 post() 方法可以模式 GET/POST 请求。
         self.c=Client()
 
     def test_login_action_username_password_null(self):
@@ -68,4 +71,22 @@ class LoginActionTesst(TestCase):
         test_data={'username':'admin','password':'rzh110120999'}
         response = self.c.post('/login_action/', data=test_data)
         self.assertEqual(response.status_code, 302)
+
+class EventManageTest(TestCase):
+    '''发布会管理'''
+    def setUp(self):
+        Event.objects.create(id=2,
+                             name='xiaomi',
+                             limit=1000,
+                             status=True,
+                             address='beijing',
+                             start_time=datetime(2016,12,15,10,59.39))
+        self.c=Client()
+
+    def test_event_manage_success(self):
+        '''测试发布会'''
+        response=self.c.post('/event_manage/')
+        self.assertEqual(response.status_code,200)
+        self.assertIn(b'xiaomi',response.content)
+        self.assertIn(b'beijing',response.content)
 
