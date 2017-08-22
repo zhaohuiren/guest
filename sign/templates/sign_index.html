@@ -30,14 +30,17 @@
 
 
 <!-- 签到功能 -->
-    <div class="page-header">
+    <div class="page-header" style="padding-top: 80px">
         <div id="navbar" class="navbar-collapse collapse">
             <form class="navbar-form" method="post" action="/sign_index_action/{{ event.id }}/">
                 <div class="form-group">
                     <input name="phone" type="text" placeholder="输入手机号" class="form-control">
                 </div> <button type="submit" class="btn btn-success">签到</button>
-                <font color="red"> <br>{{ hint }} <br>{{ guest.realname }} <br>{{ guest.phone }} <
-                    /font>
+                <font color="red">
+                    <br>{{ hint }}
+                    <br>{{ guest.realname }}
+                    <br>{{ guest.phone }}
+                </font>
             </form>
     </div>
 </div>
