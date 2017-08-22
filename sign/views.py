@@ -12,7 +12,7 @@ def index(request):
     return render(request,"index.html")
 
 
-#登陆请求1
+#登陆请求
 def login_action(request):
     if request.method=='POST':#POST必须大写   得到客户发送的请求方式
         username=request.POST.get('username', '') #get方法来寻找页面中的name信息
