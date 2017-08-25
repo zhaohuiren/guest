@@ -50,7 +50,7 @@ def get_event_list(request):
         #判断id不为空
         event={}
         try:
-            result=Event.object.get(id=eid)
+            result=Event.objects.get(id=eid)
         except ObjectDoesNotExist:
             return JsonResponse({'status':10022,'message':'queryresultisempty'})
         else:
@@ -60,6 +60,7 @@ def get_event_list(request):
             event['status']=result.status
             event['address'] = result.address
             event['start_time'] = result.start_time
+
             return JsonResponse({'status': 200, 'message': 'success', 'data': event})
     if name!='':
         datas=[]
@@ -73,7 +74,9 @@ def get_event_list(request):
                 event['status'] = r.status
                 event['address'] = r.address
                 event['start_time'] = r.start_time
+
                 datas.append(event)
+                print(datas)
             return JsonResponse({'status':200,'message':'success','date':datas})
         else:
             return JsonResponse({'status':1002,'message':'queryresultisempty'})
@@ -100,22 +103,27 @@ def add_guest(request):
         return JsonResponse({'status':10023,'message':'event status is not available'})
     #判断人数
     event_limit=Event.objects.get(id=eid).limit #发布会限制人数
-    guest_limit=Guest.objects.filter(event_id=id) #发布会已添加嘉宾数
+    guest_limit=Guest.objects.filter(event_id=eid) #发布会已添加嘉宾数
     if len(guest_limit)>=event_limit:
         return JsonResponse({'status':10024,'message':'event number is full'})
 
     event_time=Event.objects.get(id=eid).start_time #发布会时间
+    print(event_time)
     etime=str(event_time).split(".")[0] #split Python split()通过指定分隔符对字符串进行切片，如果参数num 有指定值，则仅分隔 num 个子字符串
+    print(etime)
     timeArray=time.strptime(etime, "%Y-%m-%d %H:%M:%S")# strptime()方法分析表示根据格式的时间字符串。返回值是一个struct_time所返回gmtime()或localtime()。
+    print(timeArray)
     e_time=int(time.mktime(timeArray)) #.mktime返回用秒数来表示时间的浮点数。
+    print(e_time)
     now_time=str(time.time())#当前时间
     ntime=now_time.split('.')[0]
     n_time=int(ntime)
+    print(n_time)
     #判断时间
     if n_time>=e_time:
         return JsonResponse({'status': 10025, 'message': 'event has started'})
     try:
-        Guest.objects.create(realname=realname,phone=int(phone),email=email,sign=0,event_time=id(eid))
+        Guest.objects.create(realname=realname,phone=int(phone),email=email,sign=0,event_id=int(eid))
     except IntegrityError: #外键重复一异常
         return JsonResponse({'status':10026,'message':'the event guest phone number repeat'})
     return JsonResponse({'status':200,'message':'add guest success'})
