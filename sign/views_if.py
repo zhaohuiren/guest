@@ -11,7 +11,7 @@ def add_event(request):
     name=request.POST.get('name','')#名称
     limit=request.POST.get('limit','')#限制人数
     status=request.POST.get('status','')#状态
-    address=request.post.get('address','')#地址
+    address=request.POST.get('address','')#地址
     start_time=request.POST.get('start_time','')#发布会时间
     #首先判断不能为空
     if eid==''or name==''or limit==''or address=='' or start_time=='':
