@@ -136,7 +136,7 @@ def get_guest_list(request):
 
     if eid=='':
         return JsonResponse({'status':10021,'message':'eid cannot be empty'})
-    if eid!='' and phone!='':
+    if eid!='' and phone=='':
         datas=[]
         results=Guest.objects.filter(event_id=eid)
         if results:
@@ -157,7 +157,7 @@ def get_guest_list(request):
             try:
                 result=Guest.objects.get(phone=phone,event_id=eid)
             except ObjectDoesNotExist:
-                return  JsonResponse({'status':10022,'message':'queryresultisempty'})
+                return  JsonResponse({'status':10022,'message':'query result is empty'})
             else:
                 guest['realname']=result.realnme
                 guest['phone']=result.phone
@@ -211,7 +211,7 @@ def user_sign(request):
         return JsonResponse({'status':200,'message':'sign success'})
 
 
-    #
+
 
 
 
