@@ -12,9 +12,10 @@
 
 <form method="post" action="/user_register/">
 
-    用户名: <input type="text" name="name"> <br>
-    密码: <input type="password" name="password"> <br>
-    真实姓名：<input type="text" name="real_name"> <br>
+    发布会名称: <input type="text" name="name"> <br>
+    参加人数: <input type="password" name="limit"> <br>
+    地址：<input type="text" name="address"> <br>
+    发布会时间:<input type="date" name="start_time">
     <input  id="btn" type="submit" value="注册">
       {% csrf_token %}
 
