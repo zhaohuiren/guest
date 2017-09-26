@@ -93,6 +93,7 @@ def sign_index_action(request,event_id):
         return render(request,'sign_index.html',{'event':event,'hint':'sign in succerss','guest':result})
 
 
+#添加发布会页面
 @login_required
 def add_event(request):
     return render(request,'add_event.html')

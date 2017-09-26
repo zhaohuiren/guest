@@ -174,7 +174,7 @@ def user_sign(request):
     eid=request.POST.get('eid','') #发布会id
     phone=request.POST.get('phone','')#嘉宾手机号
 
-    if eid=='' or phone=='': #首先判断不能空
+    if eid=='' : #首先判断不能空
         return JsonResponse({'status':10021,'message':'parameter error'})
 
     result=Event.objects.filter(id=eid)#判断发布会id是否存在
