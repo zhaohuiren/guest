@@ -1,6 +1,5 @@
 from aip import AipOcr
-import json
-
+import re
 
 APP_ID='10187073'
 API_KEY='Ly28a0F0yBC1itVhN09Q816e'
@@ -32,7 +31,11 @@ def data_take(data):
 
 aipOcr=AipOcr(APP_ID,API_KEY,SECRET_KEY)
 
-result1=aipOcr.receipt(get_fille_content("D:\\test.jpg"))
+result1=aipOcr.receipt(get_fille_content("E:\\test.jpg"))
 
 data=data_take(result1)
-print(data)
+
+date_start=data.find("开票日期")+5
+date_end=date_start+11
+date=data[date_start:date_end]
+print(date)
