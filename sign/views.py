@@ -92,10 +92,7 @@ def sign_index_action(request,event_id):
         Guest.objects.filter(phone=phone,event_id=event_id).update(sign='1')
         return render(request,'sign_index.html',{'event':event,'hint':'sign in succerss','guest':result})
 
-#添加发布会
-@login_required
-def add_event(request):
-    return render(request,'add_event.html')
+
 
 
 #退出登录
@@ -104,3 +101,33 @@ def logout(request):
     auth.logout(request)#退出登陆
     response=HttpResponseRedirect('/index/')
     return response
+
+
+@login_required
+def add_event(request):
+    return render(request,'add_event.html')
+
+
+
+#添加发布会动作
+@login_required
+def add_event_action(request):
+    if request.method=='POST':
+        name=request.POST.get('name','')
+        limit=request.POST.get('limit','')
+        address=request.POST.get('address','')
+        start_time=request.POST.get('start_time','')
+        status=request.POST.get("status",'')
+    Event.objects.create(name=name,limit=limit,address=address,start_time=start_time,status=status)
+    return  render(request,'add_succers.html')
+
+
+#添加成功
+def add_event_success(request):
+    return render(request,"add_succers.html")
+
+
+
+
+
+

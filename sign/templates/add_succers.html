@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+添加成功
+
+<p>
+    <b id="second">5</b>秒后返回主页<a href="javascript:goBack();"> 返回</a>
+
+
+</p>
+
+<script>
+
+    var sec=document.getElementById("second")
+    var i=5;
+    var timer=setInterval(function () {
+        i--;
+        sec.innerHTML=i;
+        if(i==1){
+            window.location.href='/event_manage'
+        }
+    },1000);
+
+    function goback(){
+        window.history.go(-1);
+
+    }
+
+
+    </script>
+</body>
+</html>

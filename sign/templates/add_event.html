@@ -10,16 +10,19 @@
 
 <body role="document">
 
-<form method="post" action="/user_register/">
-
+<form method="post" action="/add_event_action/">
+    发布会id：<input type="text" name="eid"><br>
     发布会名称: <input type="text" name="name"> <br>
-    参加人数: <input type="password" name="limit"> <br>
+    参加人数: <input type="text" name="limit"> <br>
+    状态：<input type="text" name="status"> <br>
     地址：<input type="text" name="address"> <br>
+
     发布会时间:<input type="date" name="start_time">
-    <input  id="btn" type="submit" value="注册">
+
+   <button id="btn" type="submit">添加</button>
       {% csrf_token %}
 
 </form>
 
 </body>
-</html>
+</html> `
