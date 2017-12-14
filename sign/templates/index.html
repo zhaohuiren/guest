@@ -17,30 +17,32 @@
 
 
     <div class="container">
-        <from class="form-signin" method="post" action="/login_action/">
+        <form class="form-signin" method='post' action='/login_action/'>
             <h2 class="form-signin-heading">Guset System</h2>
             <label for="inputPassword" class="sr-only">Username</label>
             <input name="username" type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
             <ladel for="inputPassword" class="sr-only">password</ladel>
             <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
              <p style="color:red">{{error}}</p> <br>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        </from>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" id="btn">登录</button><br>
+             </form>
+            <button  style="width:300px;margin:auto"   class="btn btn-lg btn-primary btn-block " type="submit" id="register">注册</button>
 
 
 
 
 
-{#    #}
+
+
 {#    <form method='post' action='/login_action/'>#}
 {#        <input name="username" type="text" placeholder="username"><br>#}
 {#        <input name="password" type="text" placeholder="password"><br>#}
 {#        {{error}}<br>#}
 {#        <button id="btn" type="submit">登陆</button>#}
 {#        {% csrf_token %}#}
-{##}
-{#    </form>#}
 
-    <button id="register">注册</button>
+    </form>
+    </div>
+
 </body>
 </html>
