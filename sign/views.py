@@ -6,7 +6,10 @@ from django.contrib.auth.decorators import login_required
 from sign.models import Event,Guest
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 from django.shortcuts import render,get_object_or_404
+from django.core.exceptions import ValidationError,ObjectDoesNotExist
+import logging
 
+logger=logging.getLogger(__name__)
 # Create your views here.
 def index(request):
     return render(request,"index.html")
@@ -118,7 +121,24 @@ def add_event_action(request):
         address=request.POST.get('address','')
         start_time=request.POST.get('start_time','')
         status=request.POST.get("status",'')
-    Event.objects.create(name=name,limit=limit,address=address,start_time=start_time,status=status)
+        if name==''or limit==''or address==''or start_time=='':
+            return render(request,'add_event.html',{'error':'不能为空'})
+
+
+        result = Event.objects.filter(name=name)
+        if result:
+
+            return  render(request,'add_event.html',{'error':'不能相同'})
+        if status=='':
+            status=1
+
+        try:
+            Event.objects.create(name=name, limit=limit, address=address, start_time=start_time, status=status)
+        except ValidationError as e:
+            return render(request,'add_event.html',{'error':'时间格式有问题'})
+
+
+
     return  render(request,'add_succers.html')
 
 

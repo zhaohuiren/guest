@@ -1,19 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewprot" content="width=device-width,inital-scala=1">
+    <!--上述三个meta标签必须放在最前面，任何其他内容都必须跟随其后-->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
     <title>Django Page</title>
+    <link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//v3.bootcss.com/examples/signin/signin.css" rel="stylesheet">
 </head>
 <body>
-    <h1>管理系统</h1>
-    <form method='post' action='/login_action/'>
-        <input name="username" type="text" placeholder="username"><br>
-        <input name="password" type="text" placeholder="password"><br>
-        {{error}}<br>
-        <button id="btn" type="submit">登陆</button>
-        {% csrf_token %}
+   
 
-    </form>
+
+    <div class="container">
+        <from class="form-signin" method="post" action="/login_action/">
+            <h2 class="form-signin-heading">Guset System</h2>
+            <label for="inputPassword" class="sr-only">Username</label>
+            <input name="username" type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+            <ladel for="inputPassword" class="sr-only">password</ladel>
+            <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+             <p style="color:red">{{error}}</p> <br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </from>
+
+
+
+
+
+{#    #}
+{#    <form method='post' action='/login_action/'>#}
+{#        <input name="username" type="text" placeholder="username"><br>#}
+{#        <input name="password" type="text" placeholder="password"><br>#}
+{#        {{error}}<br>#}
+{#        <button id="btn" type="submit">登陆</button>#}
+{#        {% csrf_token %}#}
+{##}
+{#    </form>#}
 
     <button id="register">注册</button>
 </body>
