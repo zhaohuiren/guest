@@ -9,22 +9,58 @@
     <title>Guest Manage</title>
 
 <body role="document">
-
+    <!--导航栏 -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/event_manage/">Guest Manage System</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ur class="nav navbar-nav">
+                    <li ><a href="/event_manage/">发布会</a></li>
+                    <li class="active"><a href="#">嘉宾</a></li>
+                </ur>
+                <ur class="nav navbar-nav navbar-right">
+                    <li><a href="#">{{user}}</a></li>
+                    <li>  <a href="/logout/">退出</a> </li>
+                </ur>
+            </div>
+        </div>
+    </nav>
+<div style="padding-top: 60px;padding-left: 40px">
 <form method="post" action="/add_event_action/">
 
-    发布会名称: <input type="text" name="name"> <br>
-    参加人数: <input type="text" name="limit"> <br>
-    状态：<label><input name="status" type="radio" value="1" />开启 </label>
-            <label><input name="status" type="radio" value="2" />未开启 </label><br>
-    地址：<input type="text" name="address"> <br>
+    <div class="form-group.from-control">
+        <label >发布会名称:</label><br>
+        <input class="form-group.from-control" type="text" name="name"> <br>
+       <label>参加人数: </label><br>
+        <input type="text" name="limit"> <br>
+    </div>>
 
-    发布会时间:<input type="date" name="start_time">
-
-   <button id="btn" type="submit">添加</button>
+    <div>
+        <label >状态</label><br>
+        <label><input name="status" type="radio" value="1" />开启 </label>
+        <label><input name="status" type="radio" value="2" />未开启 </label><br>
+    </div>
+    <div class="form-group.from-control">
+        <label>地址：</label><br>
+        <input type="text" name="address"> <br>
+    </div>
+    <div class="form-group.from-control"><br>
+              <label>发布会时间</label><br>
+        <input type="date" name="start_time"><br>
+    </div>
+   <button class="btn btn-primary btn-sm"id="btn" type="submit">添加</button>
       {% csrf_token %}
     {{error}}<br>
 
+
+
 </form>
 
+
+
+    </div>
 </body>
-</html> `
+
+</html>
