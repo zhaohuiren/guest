@@ -8,7 +8,8 @@ from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 from django.shortcuts import render,get_object_or_404
 from django.core.exceptions import ValidationError,ObjectDoesNotExist
 import logging
-
+import requests
+from addict import Dict
 logger=logging.getLogger(__name__)
 # Create your views here.
 def index(request):
@@ -38,7 +39,8 @@ def event_manage(request):
     #username=request.COOKIES.get('user','') #读取浏览器COOKIE
     event_list=Event.objects.all()
     username=request.session.get('user','') #读取浏览器seess
-    return render(request, "event_manage.html", {"user": username,"events":event_list})
+    weather = weater()
+    return render(request, "event_manage.html", {"user": username,"events":event_list,'weather':weather})
 
 
 
@@ -66,6 +68,8 @@ def guest_manage(request):
         contacts=paginator.page(1)
     except EmptyPage:
         contacts=paginator.page(paginator.num_pages)
+
+
 
     return render(request,"guest_manage.html",{"user":username,"guests":contacts})
 
@@ -150,4 +154,17 @@ def add_event_success(request):
 
 
 
+#获取天气
 
+
+def weater():
+    r=requests.get('https://free-api.heweather.com/s6/weather/forecast?location=北京&key=4e6ea60db7634f3ba31616c733500301')
+    a = r.json()
+    dictionary = Dict(a)
+    cond_txt_d = dictionary.HeWeather6[0].daily_forecast[0].cond_txt_d
+    tmp_max = dictionary.HeWeather6[0].daily_forecast[0].tmp_max
+    tmp_min = dictionary.HeWeather6[0].daily_forecast[0].tmp_min
+    tmp=tmp_max+'C°-'+tmp_min+'C°'
+
+    weater=cond_txt_d+' '+tmp
+    return weater

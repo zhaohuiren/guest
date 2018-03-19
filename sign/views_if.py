@@ -216,8 +216,3 @@ def user_sign(request):
 
 
 
-
-
-
-
-

@@ -1,6 +1,7 @@
 from django.contrib import  auth as django_auth
 import hashlib
 import base64, time
+
 #用户认证
 
 
@@ -17,4 +18,6 @@ def user_auth(request):
         django_auth.login(request, user)
         return "success"
     else:
-        return "fail"
+       return "fail"
+
+
