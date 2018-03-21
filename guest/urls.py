@@ -34,5 +34,6 @@ urlpatterns = [
     url(r'^api/', include('sign.urls', namespace="sign")),
     url(r'^add_event/',views.add_event),
     url(r'^add_event_action/$',views.add_event_action),
-    url(r'^add_succers/$',views.add_event_success)
+    url(r'^add_succers/$',views.add_event_success),
+    url(r'^register/$', views.register)
 ]
