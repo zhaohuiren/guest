@@ -10,6 +10,7 @@ from django.core.exceptions import ValidationError, ObjectDoesNotExist
 import logging
 import requests
 from addict import Dict
+from django.contrib.auth.models import User
 
 logger = logging.getLogger(__name__)
 
@@ -161,6 +162,23 @@ def weater():
     return weater
 
 
-# 注册
+#注册
 def register(requests):
+
+
     return render(requests, "register.html")
+
+
+# 注册动作
+def register_act(requests):
+    if requests.method=='POST':
+        username=requests.POST.get('username','')
+        password=requests.POST.get('password','')
+        email=requests.POST.get('email','')
+        user = User.objects.create_user(username, email, password)
+        user.save()
+
+
+    return render(requests, "index.html")
+
+

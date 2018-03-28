@@ -16,17 +16,18 @@
 
 
 <div class="container">
-    <form class="form-signin" method='post' action='/login_action/'>
+    <form class="form-signin" method='post' action='/register_act/'>
         <h2 class="form-signin-heading">注册</h2>
 
-        <label  class='group' for="Username" class="sr-only">Username</label>
-        <input type="text">
+        <label  class='group' for="Username" class="sr-only"  >Username</label>
+        <input type="text" id="username" name="username">
 
-        <label  class='group' for="Username" class="sr-only">password</label>
-        <input type="password"><br>
+        <label  class='group' for="Username" class="sr-only" >password</label>
+        <input type="password" name="password"><br>
 
-        <label  class='group' for="Username" class="sr-only">email</label>
-        <input type="text">
+        <label  class='group' for="Username" class="sr-only" >email</label>
+        <input type="text" name="email">
+         <input  style="width:300px;margin:auto" class="btn btn-lg btn-primary btn-block " id="btn" type="submit" value="注册">
 
 
 
@@ -39,12 +40,12 @@
 
 
     </form>
-    <button style="width:300px;margin:auto" class="btn btn-lg btn-primary btn-block " type="submit" id="register">注册
+
     </button>
 
 
 
-    </form>
+
 </div>
 
 

@@ -35,5 +35,6 @@ urlpatterns = [
     url(r'^add_event/',views.add_event),
     url(r'^add_event_action/$',views.add_event_action),
     url(r'^add_succers/$',views.add_event_success),
-    url(r'^register/$', views.register)
+    url(r'^register/$', views.register),
+    url(r'^register_act/$', views.register_act)
 ]
